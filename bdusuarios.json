@@ -1,0 +1,12 @@
+{
+  "users": [
+    {"id": "1", "username": "Ivan", "password": "1234"},
+    {"id": "2", "username": "Irving", "password":"4567"},
+    {"id": "3", "username": "Alejandro", "password": "8910"}
+  ],
+  "accounts": [
+    { "id": "1", "accountNumber": "1234657809", "userId": "1"},
+    { "id": "2", "accountNumber": "9078653412", "userId": "2"},
+    { "id": "3", "accountNumber": "3245679810", "userId": "3"}
+  ]
+}
