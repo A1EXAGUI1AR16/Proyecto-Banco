@@ -13,12 +13,17 @@ document.getElementById('loginBtn').onclick =
         let password = document.getElementById('password').value;
         const res = await fetch(`http://localhost:3000/users?username${username}&password=${password}`);
         const user = await res.json();
-        if(user.length > 0) {
+        if (username.trim() === '' || password.trim() === '') {
+            alert('Por favor, llena todos los campos.');
+        } else if (user.length > 0) {
             obtenerUsuarioLogueado(user[0]);
             paginaPrincipal(interfaz);
          
-        }   else    {
+        }   else {
             alert("Usuario o Contraseña Incorrectos");
         }
-    }  
+        }
+    
+    document.getElementById('username').value="";
+    document.getElementById('password').value="";
 }

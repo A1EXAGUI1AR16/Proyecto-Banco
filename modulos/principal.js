@@ -1,16 +1,16 @@
-/*import { template } from "lodash";
-import { login } from "./login.js";
-import { use } from "react";*/
 import { usuarioActual, obtenerUsuarioLogueado } from "./usuarios.js";
 import { detalleCuenta } from "./detalles.js";
+import { login } from "./login.js";
 
-export async function paginaPrincipal(interfaz)  {
-const res = await fetch(`http://localhost:3000/accounts?userId=${usuarioActual.id}`);
-const user = await res.json();
+export async function paginaPrincipal(interfaz) {
+  const res = await fetch(
+    `http://localhost:3000/accounts?userId=${usuarioActual.id}`
+  );
+  const user = await res.json();
 
-interfaz.innerHTML = `
+  interfaz.innerHTML = `
 <div>
-<button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+<button id="regresar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
 </svg></button>
 <h2>Hola ${usuarioActual.username} !</h2>
@@ -36,8 +36,9 @@ interfaz.innerHTML = `
 
 <div id="saldo"></div>
 `;
-let saldo = document.getElementById("saldo");
-user.forEach(user => {
+
+  let saldo = document.getElementById("saldo");
+  user.forEach((user) => {
     const newDiv = document.createElement("div");
     newDiv.classList.add("tarjetas");
     newDiv.innerHTML = `
@@ -55,11 +56,14 @@ user.forEach(user => {
 </div>
     `;
     saldo.appendChild(newDiv);
-});
-    document.querySelectorAll("[data-id]").forEach( button => {
-      button.onclick = () => detalleCuenta(interfaz , button.dataset.id )
-    })
+  });
+  document.querySelectorAll("[data-id]").forEach((button) => {
+    button.onclick = () => detalleCuenta(interfaz, button.dataset.id);
+  });
 
-    
-    
+      document.getElementById("regresar").onclick = () => {
+        obtenerUsuarioLogueado(null);
+        login(interfaz);
+      };
+
 }
