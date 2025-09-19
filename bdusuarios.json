@@ -5,8 +5,8 @@
     {"id": "3", "username": "Alejandro", "password": "8910"}
   ],
   "accounts": [
-    { "id": "1", "accountNumber": "1234657809", "userId": "1", "saldo": "$100,000"},
-    { "id": "2", "accountNumber": "9078653412", "userId": "2", "saldo": "$300,000"},
-    { "id": "3", "accountNumber": "3245679810", "userId": "3", "saldo": "$500,000"}
+    { "id": "1", "accountNumber": "1234657809", "userId": "1", "saldo": "$100,000" , "spam": "Prestamos Sep-Dic" , "spanDescripcion": "No te quedes sin comer y pide un Prestamo"},
+    { "id": "2", "accountNumber": "9078653412", "userId": "2", "saldo": "$300,000" , "spam": "Promocion del HotSale" , "spanDescripcion": "Aprovecha este mes de descuento a MSI con walmart"},
+    { "id": "3", "accountNumber": "3245679810", "userId": "3", "saldo": "$500,000" , "spam": "Tienes una tarjeta de credito disponible" , "spanDescripcion": "Primer año sin anualidad"}
   ]
 }
