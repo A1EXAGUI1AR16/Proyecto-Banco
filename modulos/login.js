@@ -1,4 +1,5 @@
 import {paginaPrincipal} from "./principal.js"
+import { obtenerUsuarioLogueado } from "./usuarios.js";
 export function login(interfazLogin){
     interfazLogin.innerHTML = `
     <h2>Login</h2>
@@ -13,7 +14,9 @@ document.getElementById('loginBtn').onclick =
         const res = await fetch(`http://localhost:3000/users?username${username}&password=${password}`);
         const user = await res.json();
         if(user.length > 0) {
+            obtenerUsuarioLogueado(user[0]);
             paginaPrincipal(interfaz);
+         
         }   else    {
             alert("Usuario o Contraseña Incorrectos");
         }
