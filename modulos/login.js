@@ -1,6 +1,6 @@
-import {paginaPrincipal} from "./principal.js"
+import { paginaPrincipal } from "./principal.js"
 import { obtenerUsuarioLogueado } from "./usuarios.js";
-export function login(interfazLogin){
+export function login(interfazLogin) {
     interfazLogin.innerHTML = `
     <div class="cabecero">
     <h2>Bienvenido</h2>
@@ -9,23 +9,26 @@ export function login(interfazLogin){
     <button id="loginBtn">Entrar</button>
     </div>
   `;
-document.getElementById('loginBtn').onclick =
-    async ()  =>{
-        let username = document.getElementById('username').value;
-        let password = document.getElementById('password').value;
-        const res = await fetch(`http://localhost:3000/users?username${username}&password=${password}`);
-        const user = await res.json();
-        if (username.trim() === '' || password.trim() === '') {
-            alert('Por favor, llena todos los campos.');
-        } else if (user.length > 0) {
-            obtenerUsuarioLogueado(user[0]);
-            paginaPrincipal(interfaz);
-         
-        }   else {
-            alert("Usuario o Contraseña Incorrectos");
+    document.getElementById('loginBtn').onclick =
+        async () => {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+
+            if (username === '' || password === '') {
+                alert('Por favor, llena todos los campos.');
+            } else {
+                const res = await fetch(`http://localhost:3000/users?username=${username}&password=${password}`);
+                const user = await res.json();
+                if (user.length > 0) {
+                    obtenerUsuarioLogueado(user[0]);
+                    paginaPrincipal(interfaz);
+
+                } else {
+                    alert("Usuario o Contraseña Incorrectos");
+                }
+            }
         }
-        }
-    
-    document.getElementById('username').value="";
-    document.getElementById('password').value="";
+
+    document.getElementById('username').value = "";
+    document.getElementById('password').value = "";
 }
