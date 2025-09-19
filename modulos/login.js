@@ -2,10 +2,12 @@ import {paginaPrincipal} from "./principal.js"
 import { obtenerUsuarioLogueado } from "./usuarios.js";
 export function login(interfazLogin){
     interfazLogin.innerHTML = `
-    <h2>Login</h2>
+    <div class="cabecero">
+    <h2>Bienvenido</h2>
     <input id="username" type="text" placeholder="Nombre de Usuario"><br>
     <input id="password" type="password" placeholder="Contraseña"><br>
     <button id="loginBtn">Entrar</button>
+    </div>
   `;
 document.getElementById('loginBtn').onclick =
     async ()  =>{

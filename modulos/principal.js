@@ -9,7 +9,7 @@ export async function paginaPrincipal(interfaz) {
   const user = await res.json();
 
   interfaz.innerHTML = `
-<div>
+<div class="contenedorCabecero">
 <button id="regresar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
 </svg></button>
@@ -18,6 +18,8 @@ export async function paginaPrincipal(interfaz) {
   <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
 </svg></button>
 </div>
+
+<div class="contenedorPrincipal">
 <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
 </svg><p>Transferir</p></button>
@@ -33,8 +35,11 @@ export async function paginaPrincipal(interfaz) {
 <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
   <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
 </svg><p>Mas</p></button>
+</div>
 
-<div id="saldo"></div>
+<div id="saldo" class="saldo"></div>
+<div id="promociones">
+</div>
 `;
 
   let saldo = document.getElementById("saldo");
@@ -42,21 +47,33 @@ export async function paginaPrincipal(interfaz) {
     const newDiv = document.createElement("div");
     newDiv.classList.add("tarjetas");
     newDiv.innerHTML = `
+    <div class="infoSaldo">
     <p>${user.accountNumber}</p>
+    <p>Numero de cuenta</p>
+    </div>
+    <div class="infoSaldo">
     <p>${user.saldo}</p>
+    <p>Saldo</p>
+    </div>
     <button class="details" data-id="${user.id}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
   <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
 </svg></button>
-<div id="promociones">
-  <p>Promociones<p>
-   <div>
-        <h3>${user.spam}</h3>
-        <p>${user.spanDescripcion}</p>
-   </div>
-</div>
     `;
     saldo.appendChild(newDiv);
   });
+
+  let promociones = document.getElementById("promociones");
+  user.forEach((user) => {
+    const newDiv2 = document.createElement("div");
+    newDiv2.classList.add("tarjetaPromocion");
+    newDiv2.innerHTML = `
+    <p>${user.spam}</p>
+    <p>${user.spanDescripcion}</p>
+    `;
+    promociones.appendChild(newDiv2);
+  });
+
+
   document.querySelectorAll("[data-id]").forEach((button) => {
     button.onclick = () => detalleCuenta(interfaz, button.dataset.id);
   });
