@@ -185,3 +185,73 @@ opacity: 0.5;
   display: inline-flex;
   margin: 1.3rem;
 }
+
+
+#changePassBtn {
+  background: #2a3a5b;
+  border: none; 
+  color: white;
+}
+
+#changePassBtn:hover {
+  background: #2a3a5b;
+  border: none;
+  color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content button {
+  width: 45%;
+  padding: 10px;
+  margin: 10px 5px 0 5px;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-content button:hover {
+  background: #0056b3;
+}
+
+#cerrarModal {
+  background: #dc3545;
+}
+
+#cerrarModal:hover {
+  background: #b21f2d;
+}
